@@ -20,11 +20,17 @@ export const BasicTable = () => {
   //   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
   //     tableInstance;
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({
-      columns,
-      data,
-    });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    footerGroups,
+    rows,
+    prepareRow,
+  } = useTable({
+    columns,
+    data,
+  });
 
   return (
     <table {...getTableProps()}>
@@ -52,6 +58,15 @@ export const BasicTable = () => {
           <td></td>
         </tr>
       </tbody>
+      <tfoot>
+        {footerGroups.map((footerGroup) => (
+          <tr {...footerGroup.getFooterGroupProps()}>
+            {footerGroup.headers.map((column) => (
+              <td {...column.getFooterProps}>{column.render("Footer")}</td>
+            ))}
+          </tr>
+        ))}
+      </tfoot>
     </table>
   );
 };
