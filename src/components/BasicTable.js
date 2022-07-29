@@ -44,7 +44,7 @@ export const BasicTable = () => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row, i) => {
           prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
@@ -54,9 +54,6 @@ export const BasicTable = () => {
             </tr>
           );
         })}
-        <tr>
-          <td></td>
-        </tr>
       </tbody>
       <tfoot>
         {footerGroups.map((footerGroup) => (
